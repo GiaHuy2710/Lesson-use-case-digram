@@ -1,0 +1,202 @@
+.uc-quiz-wrapper {
+    min-height: 100vh;
+    background-color: #0d0f12; /* Brilliant dark background */
+    color: white;
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.uc-diagram-box {
+    background: #15181e;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 900px;
+    height: 500px;
+    position: relative;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.uc-actor {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a3adc2;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.uc-fixed-usecase {
+    position: absolute;
+    background: #1e232d;
+    border: 2px solid #2d3342;
+    border-radius: 30px; /* Oval shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e2e8f0;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.uc-drop-zone {
+    position: absolute;
+    border: 2px dashed #3a4252;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: rgba(45, 51, 66, 0.3);
+    z-index: 1;
+}
+
+.uc-drop-zone.active {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.uc-drop-zone.relation {
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #a3adc2;
+    background: #15181e;
+    border: 1px dashed #3a4252;
+}
+
+.uc-draggable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: grab;
+    width: 100%;
+    height: 100%;
+    animation: popIn 0.3s ease;
+}
+
+.uc-draggable.usecase {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 30px; /* Oval match */
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.uc-draggable.relation {
+    background: #2d3342;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    color: #cbd5e1;
+    font-family: monospace;
+}
+
+.uc-draggable:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.uc-pool {
+    display: flex;
+    gap: 1.5rem;
+    background: #15181e;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    min-width: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.uc-pool-item-wrapper {
+    width: 140px;
+    height: 60px;
+}
+
+.uc-pool-item-wrapper.relation {
+    width: 100px;
+    height: 30px;
+}
+
+/* Animations */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shakeError 0.5s ease;
+}
+
+.correct-glow {
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
+    border: 2px solid #2ecc71 !important;
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+}
+
+.uc-draggable.relation.correct-glow {
+    background: #1e3a29 !important;
+    border-color: #2ecc71 !important;
+    color: #2ecc71 !important;
+}
+
+.uc-check-btn {
+    margin-top: 2rem;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    background: #e2e8f0;
+    color: #0f1115;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.uc-check-btn.ready {
+    opacity: 1;
+    pointer-events: auto;
+    background: white;
+}
+
+.uc-check-btn.ready:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+}
+
+.uc-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.uc-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.uc-header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}

@@ -1,0 +1,315 @@
+/* CoordinateQuiz.css */
+
+.quiz-wrapper {
+    background-color: #1a1a1f; /* Dark background similar to Brilliant */
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+}
+
+.back-nav-btn {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    background: transparent;
+    border: none;
+    color: #a0a0ab;
+    font-size: 1.05rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+    padding: 10px;
+}
+.back-nav-btn:hover {
+    color: #ffffff;
+}
+
+/* Progress Bar */
+.progress-header {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #3b3b45;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #2ecc71;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.progress-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #a0a0ab;
+    white-space: nowrap;
+}
+
+/* Quiz Container */
+.quiz-container {
+    background-color: #24252b;
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.finish-container {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.finish-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #2ecc71;
+}
+
+.finish-subtitle {
+    font-size: 1.1rem;
+    color: #a0a0ab;
+    margin-bottom: 40px;
+}
+
+.question-text {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.coordinate-system {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin-bottom: 40px;
+    user-select: none;
+}
+
+.coordinate-system svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.axis {
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+.grid-line {
+    stroke: #40404b;
+    stroke-width: 1;
+}
+
+.axis-label {
+    fill: #a0a0ab;
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* Points Interactivity */
+.point {
+    cursor: pointer;
+}
+
+.point-halo {
+    fill: #4b4b57;
+    opacity: 0.5;
+    r: 12;
+    transition: all 0.2s ease;
+}
+
+.point-core {
+    fill: #5e72e4;
+    r: 5;
+    transition: all 0.2s ease;
+}
+
+/* Hover state */
+.point:not(.movable):hover .point-halo {
+    fill: #5e72e4;
+    opacity: 0.3;
+    r: 14;
+}
+
+/* Selected state */
+.point.selected .point-halo {
+    fill: transparent;
+    stroke: #5e72e4;
+    stroke-width: 3;
+    opacity: 1;
+    r: 14;
+}
+.point.selected .point-core {
+    fill: #ffffff;
+    r: 6;
+}
+
+/* Correct state */
+.point.correct .point-halo {
+    stroke: #2ecc71;
+    fill: transparent;
+    opacity: 1;
+    r: 14;
+    stroke-width: 3;
+}
+.point.correct .point-core {
+    fill: #2ecc71;
+}
+
+/* Incorrect state */
+.point.incorrect .point-halo {
+    stroke: #e74c3c;
+    fill: transparent;
+    opacity: 1;
+    r: 14;
+    stroke-width: 3;
+}
+.point.incorrect .point-core {
+    fill: #e74c3c;
+}
+
+
+/* --- Movable Points Specific Styling --- */
+.point.movable .point-halo {
+    fill: #20b2aa; /* Teal like the screenshot */
+    stroke: transparent;
+    opacity: 0.3;
+    r: 16;
+}
+.point.movable .point-core {
+    fill: #20b2aa;
+    r: 6;
+}
+.point.movable.dragging .point-halo {
+    opacity: 0.5;
+    r: 20;
+}
+.point.movable:hover .point-halo {
+    opacity: 0.4;
+    r: 18;
+}
+
+/* Correct state overriding for movable */
+.point.movable.correct .point-halo {
+    stroke: #2ecc71;
+    fill: transparent;
+    opacity: 1;
+    r: 16;
+}
+.point.movable.correct .point-core {
+    fill: #2ecc71;
+}
+
+.point.movable.incorrect .point-halo {
+    stroke: #e74c3c;
+    fill: transparent;
+    opacity: 1;
+    r: 16;
+}
+.point.movable.incorrect .point-core {
+    fill: #e74c3c;
+}
+
+.point.movable.ghost {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+
+/* Buttons */
+.check-btn {
+    background-color: #3b3b45;
+    color: #7a7a85;
+    border: none;
+    border-radius: 24px;
+    padding: 14px 40px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: not-allowed;
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.2s ease;
+}
+
+.check-btn.active {
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px #5a5a66;
+}
+
+.check-btn.active:hover {
+    background-color: #44444d;
+}
+
+.check-btn.state-correct {
+    background-color: #2ecc71;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.check-btn.state-incorrect {
+    background-color: #e74c3c;
+    color: #ffffff;
+    box-shadow: none;
+    cursor: default;
+}
+
+.incorrect-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.reset-btn {
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: #a0a0ab;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    display: none;
+}
+.reset-btn.visible {
+    display: inline-block;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.action-pulse {
+    animation: pulse 1.5s infinite;
+    cursor: pointer !important;
+}
